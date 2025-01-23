@@ -65,14 +65,6 @@ int main() {
             int b = pop(stk);
             int a = pop(stk);
             push(stk, a * b);
-        } else if (strcmp(buffer, "/\n") == 0) {
-            int b = pop(stk);
-            int a = pop(stk);
-            if (b == 0) {
-                printf("division with 0\n");
-                continue;
-            }
-            push(stk, a / b);
         } else {
             int val = atoi(buffer);
             push(stk, val);
