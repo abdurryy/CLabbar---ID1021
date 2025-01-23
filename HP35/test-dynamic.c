@@ -57,51 +57,19 @@ int pop(stack *stk) {
 }
 
 int main() {
-    int size = 10;
-    stack *stk = new_stack(size);
-    printf("HP-35 pocket calculator\n");
-    
-    int n = 100;
-    char buff[n];
-    char *buffer = buff;
-    bool run = true;
-
-    while (run) {
-        printf(" > ");
-        fgets(buffer, n, stdin);
-
-        if (strcmp(buffer, "\n") == 0) {
-            run = false;
-        } else if (strcmp(buffer, "+\n") == 0) {
-            int b = pop(stk);
-            int a = pop(stk);
-            push(stk, a + b);
-        } else if (strcmp(buffer, "-\n") == 0) {
-            int b = pop(stk);
-            int a = pop(stk);
-            push(stk, a - b);
-        } else if (strcmp(buffer, "*\n") == 0) {
-            int b = pop(stk);
-            int a = pop(stk);
-            push(stk, a * b);
-        } else if (strcmp(buffer, "/\n") == 0) {
-            int b = pop(stk);
-            int a = pop(stk);
-            if (b == 0) {
-                printf("division with 0\n");
-                continue;
-            }
-            push(stk, a / b);
-        } else {
-            int val = atoi(buffer);
-            push(stk, val);
-        }
+    stack *stk = new_stack(4);
+    int n = 10;
+    for(int i = 0; i < n; i++) {
+        push(stk, i+30);
     }
-
-    printf("The result is: %d\n\n", pop(stk));
-    printf("I love reversed Polish notation, don't you?\n");
-
-    free(stk->array);
-    free(stk);
-    return 0;
+    for(int i = 0; i < stk->top; i++) {
+        printf("stack[%d] : %d\n", i, stk->array[i]);
+    }
+    int val = pop(stk);
+    // assuming 0 is returned when the stack is empty
+    while(val != 0) { 
+        printf("pop : %d\n", val);
+        val = pop(stk);
+    }
 }
+
