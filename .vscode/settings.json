@@ -3,6 +3,7 @@
         "stdlib.h": "c",
         "string.h": "c",
         "cmath": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "type_traits": "c"
     }
 }
