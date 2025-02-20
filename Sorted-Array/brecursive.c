@@ -10,21 +10,19 @@ long nano_seconds(struct timespec *t_start, struct timespec *t_stop) {
     (t_stop->tv_sec - t_start->tv_sec)*1000000000;
 }
 
-bool binary_search(int array[], int length, int key) {
-    int first = 0;
-    int last = length - 1;
-    while (first <= last) {
-        int index = first + (last - first) / 2;
-        if (array[index] == key) {
-            return true;
-        }
-        if (array[index] < key) {
-            first = index + 1;
-        } else {
-            last = index - 1;
-        }
+bool recursive(int array[], int length, int key, int first, int last) {
+    if (first > last) {
+        return false; 
     }
-    return false;
+    int index = first + (last - first) / 2; 
+    if (array[index] == key) {
+        return true; 
+    }
+    if (array[index] < key) {
+        return recursive(array, length, key, index + 1, last); 
+    } else {
+        return recursive(array, length, key, first, index - 1); 
+    }
 }
 
 int *sorted(int n) {
@@ -42,8 +40,10 @@ int *sorted(int n) {
 
 long benchmark(int* arr, int size, int key){
     struct timespec t_start, t_stop;
+    int first = 0;
+    int last = size - 1;
     clock_gettime(CLOCK_MONOTONIC, &t_start);
-    binary_search(arr,size,key);
+    recursive(arr,size,key,first,last);
     clock_gettime(CLOCK_MONOTONIC, &t_stop);
     long wall = nano_seconds(&t_start, &t_stop);
     return wall;

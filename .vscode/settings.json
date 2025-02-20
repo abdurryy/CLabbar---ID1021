@@ -3,6 +3,9 @@
         "stdlib.h": "c",
         "string.h": "c",
         "cmath": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "stdbool.h": "c",
+        "compare": "c",
+        "time.h": "c"
     }
 }
