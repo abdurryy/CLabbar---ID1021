@@ -4,8 +4,12 @@
         "string.h": "c",
         "cmath": "c",
         "math.h": "c",
+<<<<<<< HEAD
         "stdbool.h": "c",
         "compare": "c",
         "time.h": "c"
+=======
+        "type_traits": "c"
+>>>>>>> ce3915305bf127bc2e1831c9aef370eebda43e55
     }
 }
